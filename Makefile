@@ -1,6 +1,8 @@
 PREFIX ?= /usr/local
 CC ?= cc
 
+blocks.h:
+	cp blocks.def.h $@
 dwmblocks: dwmblocks.o
 	$(CC) dwmblocks.o -lX11 -o dwmblocks
 dwmblocks.o: dwmblocks.c blocks.h
@@ -8,7 +10,7 @@ dwmblocks.o: dwmblocks.c blocks.h
 
 
 clean:
-	rm -f *.o *.gch dwmblocks
+	rm -f *.o *.gch dwmblocks blocks.h
 install: dwmblocks
 	mkdir -p $(DESTDIR)$(PREFIX)/bin
 	cp -f dwmblocks $(DESTDIR)$(PREFIX)/bin
